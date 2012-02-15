@@ -12,4 +12,6 @@ Gem::Specification.new do |s|
 
   s.files         = Dir["lib/**/*", "README*", "LICENSE*", "Changelog*"]
   s.require_path  = "lib"
+
+  s.add_development_dependency "rspec", "~> 2.0"
 end
