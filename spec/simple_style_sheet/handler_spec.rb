@@ -112,4 +112,40 @@ describe SimpleStyleSheet::Handler do
       end
     end
   end
+
+  describe "with property_name_translator" do
+    let(:style_sheet) do
+      {
+        "property_a" => "value a",
+
+        "tag.class" => {
+          "property_b" => "value b"
+        }
+      }
+    end
+
+    let(:property_name_translator) do
+      translator = stub(:property_name_translator)
+      translator.stub(:translate).with("property_a").and_return("translated_property_a")
+      translator.stub(:translate).with("property_b").and_return("translated_property_b")
+      translator
+    end
+
+    subject { described_class.new(style_sheet, property_name_translator) }
+
+    describe "during initialization" do
+
+      it "should populate @map with translated property names" do
+        subject.instance_variable_get("@map").keys.should eq(["translated_property_a", "translated_property_b"])
+      end
+    end
+
+    describe "when calling #value_for" do
+      let(:tag) { stub(:tag, :name => "tag", :id => nil, :class_names => ["class"]) }
+
+      it "should use translated property name when searching for matching selectors" do
+        subject.value_for(tag, "property_b").should eq("value b")
+      end
+    end
+  end
 end
