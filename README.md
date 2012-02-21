@@ -74,6 +74,15 @@ Now, a property value for a given tag can be obtained:
 
 The #value_for method looks in the style sheet for selectors that match a given tag. If more than one matching selector is found, the one with highest specificity is used (more details below). Then the value it points to for given property name is returned.
 
+### 5. Getting top-level property value
+
+The #value_for method, when called without the tag argument, returns top-level property value (defined in the style sheet without a selector), which may be interpreted as default one or as a value for text not included in any tags. For example:
+
+```ruby
+  style_sheet_handler.value_for("background-color")
+   => :blue
+```
+
 Selector specificity
 --------------------
 
