@@ -70,45 +70,47 @@ describe SimpleStyleSheet::Handler do
       subject
     end
 
-    let(:tag) { stub(:tag) }
+    context "when called with a tag" do
+      let(:tag) { stub(:tag) }
 
-    let(:selector_a) { stub(:selector_a, :specificity => SimpleStyleSheet::SelectorSpecificity.new(0,1,0,0)) }
-    let(:selector_b) { stub(:selector_b, :specificity => SimpleStyleSheet::SelectorSpecificity.new(0,0,0,2)) }
-    let(:selector_c) { stub(:selector_c, :specificity => SimpleStyleSheet::SelectorSpecificity.new(0,0,1,0)) }
-    let(:selector_d) { stub(:selector_d, :specificity => SimpleStyleSheet::SelectorSpecificity.new(0,0,0,1)) }
-    let(:selector_e) { stub(:selector_e, :specificity => SimpleStyleSheet::SelectorSpecificity.new(0,2,0,0)) }
+      let(:selector_a) { stub(:selector_a, :specificity => SimpleStyleSheet::SelectorSpecificity.new(0,1,0,0)) }
+      let(:selector_b) { stub(:selector_b, :specificity => SimpleStyleSheet::SelectorSpecificity.new(0,0,0,2)) }
+      let(:selector_c) { stub(:selector_c, :specificity => SimpleStyleSheet::SelectorSpecificity.new(0,0,1,0)) }
+      let(:selector_d) { stub(:selector_d, :specificity => SimpleStyleSheet::SelectorSpecificity.new(0,0,0,1)) }
+      let(:selector_e) { stub(:selector_e, :specificity => SimpleStyleSheet::SelectorSpecificity.new(0,2,0,0)) }
 
-    context "when there are many matching selectors" do
-      before do
-        selector_a.stub(:match?).with(tag).and_return(false)
-        selector_b.stub(:match?).with(tag).and_return(true)
-        selector_c.stub(:match?).with(tag).and_return(true)
-        selector_d.stub(:match?).with(tag).and_return(true)
-        selector_e.stub(:match?).with(tag).and_return(true)
+      context "when there are many matching selectors" do
+        before do
+          selector_a.stub(:match?).with(tag).and_return(false)
+          selector_b.stub(:match?).with(tag).and_return(true)
+          selector_c.stub(:match?).with(tag).and_return(true)
+          selector_d.stub(:match?).with(tag).and_return(true)
+          selector_e.stub(:match?).with(tag).and_return(true)
+        end
+
+        it "should return matching selector of greatest specificity, for given property" do
+          subject.value_for(tag, "property").should eq("value C")
+        end
       end
 
-      it "should return matching selector of greatest specificity, for given property" do
-        subject.value_for(tag, "property").should eq("value C")
-      end
-    end
+      context "when there is no matching selector" do
+        before do
+          selector_a.stub(:match?).with(tag).and_return(false)
+          selector_b.stub(:match?).with(tag).and_return(false)
+          selector_c.stub(:match?).with(tag).and_return(false)
+          selector_d.stub(:match?).with(tag).and_return(false)
+          selector_e.stub(:match?).with(tag).and_return(true)
+        end
 
-    context "when there is no matching selector" do
-      before do
-        selector_a.stub(:match?).with(tag).and_return(false)
-        selector_b.stub(:match?).with(tag).and_return(false)
-        selector_c.stub(:match?).with(tag).and_return(false)
-        selector_d.stub(:match?).with(tag).and_return(false)
-        selector_e.stub(:match?).with(tag).and_return(true)
+        it "should return nil" do
+          subject.value_for(tag, "property").should be_nil
+        end
       end
 
-      it "should return nil" do
-        subject.value_for(tag, "property").should be_nil
-      end
-    end
-
-    context "when there is no such property" do
-      it "should return nil" do
-        subject.value_for(tag, "unknown-property").should be_nil
+      context "when there is no such property" do
+        it "should return nil" do
+          subject.value_for(tag, "unknown-property").should be_nil
+        end
       end
     end
   end
