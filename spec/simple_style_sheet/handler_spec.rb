@@ -113,6 +113,18 @@ describe SimpleStyleSheet::Handler do
         end
       end
     end
+
+    context "when called without a tag" do
+      let(:selector_a) { stub(:selector_a, :empty? => true ) }
+      let(:selector_b) { stub(:selector_b, :empty? => true ) }
+      let(:selector_c) { stub(:selector_c, :empty? => false) }
+      let(:selector_d) { stub(:selector_d, :empty? => false) }
+      let(:selector_e) { stub(:selector_e, :empty? => true ) }
+
+      it "should return the value pointed by the last empty selector for given property name" do
+        subject.value_for("property").should eq("value B")
+      end
+    end
   end
 
   describe "with property_name_translator" do

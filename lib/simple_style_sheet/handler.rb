@@ -7,10 +7,18 @@ module SimpleStyleSheet
       populate(style_sheet_hash)
     end
 
-    def value_for(tag, property_name)
-      found = (@map[final_property_name(property_name)] || [])
-        .select { |data| data[:selector].match?(tag) }
-        .max_by { |data| data[:selector].specificity }
+    def value_for(tag=nil, property_name)
+      found = if tag
+                (@map[final_property_name(property_name)] || [])
+                .select { |data| data[:selector].match?(tag) }
+                .max_by { |data| data[:selector].specificity }
+
+              else
+                (@map[final_property_name(property_name)] || [])
+                .select { |data| data[:selector].empty?      }
+                .last
+
+              end
 
       found && found[:value]
     end
