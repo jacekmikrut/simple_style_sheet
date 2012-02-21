@@ -7,8 +7,8 @@ Gem::Specification.new do |s|
   s.author        = "Jacek Mikrut"
   s.email         = "jacekmikrut.software@gmail.com"
   s.homepage      = "http://github.com/jacekmikrut/simple_style_sheet"
-  s.summary       = "Simple style sheet."
-  s.description   = "Simple style sheet."
+  s.summary       = "Parses a CSS-like Hash style sheet and allows searching for property values of HTML-like tags."
+  s.description   = "Parses a CSS-like Hash style sheet and allows searching for property values of HTML-like tags. Tag and property names, as well as their meaning, are up to the gem user."
 
   s.files         = Dir["lib/**/*", "README*", "LICENSE*", "Changelog*"]
   s.require_path  = "lib"
