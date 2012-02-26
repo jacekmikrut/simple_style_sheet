@@ -1,2 +1,5 @@
+0.0.2 (February 26, 2012)
+  Delegated selector-related functionality to SimpleSelector gem.
+
 0.0.1 (February 21, 2012)
   Initial release.
