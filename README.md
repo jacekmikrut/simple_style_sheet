@@ -86,22 +86,7 @@ The #value_for method, when called without the tag argument, returns top-level p
 Selector specificity
 --------------------
 
-In order to return a property value for a given tag, search for the matching selector of highest specificity is performed.
-
-The specificity of each selector is calculated according to rules similar to the standard CSS rules.
-
-The specificity is four numbers: **a,b,c,d**.
-
-**The rules respected by this gem are**:
-
-* **a** is always 0;
-* **b** is the number of ID attributes in the selector;
-* **c** is the number of class names in the selector;
-* **d** is the number of tag names in the selector.
-
-For example, a selector `tag#id1.class1 #id2.class2.class3` has specificity equal to `0,2,3,1`.
-
-Two selector specificities are compared by succesively comparing their corresponding numbers, from left to right.
+Selector specificity information can be found in the description of [SimpleSelector](http://github.com/jacekmikrut/simple_selector) Ruby gem.
 
 Property name translator
 ------------------------
