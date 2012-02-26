@@ -29,16 +29,16 @@ describe SimpleStyleSheet::Handler do
     }
     MAPS << {
       "property_a" => [
-        { :value => :value_a1, :selector => SimpleStyleSheet::Selector.new("") },
-        { :value => :value_a2, :selector => SimpleStyleSheet::Selector.new("tag_a .class") },
-        { :value => :value_a3, :selector => SimpleStyleSheet::Selector.new("tag_a .class tag_b") },
-        { :value => :value_a4, :selector => SimpleStyleSheet::Selector.new("tag_a .class #id") },
+        { :value => :value_a1, :selector => SimpleSelector.new("") },
+        { :value => :value_a2, :selector => SimpleSelector.new("tag_a .class") },
+        { :value => :value_a3, :selector => SimpleSelector.new("tag_a .class tag_b") },
+        { :value => :value_a4, :selector => SimpleSelector.new("tag_a .class #id") },
       ],
       "property_b" => [
-        { :value => :value_b1, :selector => SimpleStyleSheet::Selector.new("tag_a .class tag_b") },
+        { :value => :value_b1, :selector => SimpleSelector.new("tag_a .class tag_b") },
       ],
       "property_c" => [
-        { :value => :value_c1, :selector => SimpleStyleSheet::Selector.new("tag_a .class #id") },
+        { :value => :value_c1, :selector => SimpleSelector.new("tag_a .class #id") },
       ],
     }
 
@@ -73,11 +73,11 @@ describe SimpleStyleSheet::Handler do
     context "when called with a tag" do
       let(:tag) { stub(:tag) }
 
-      let(:selector_a) { stub(:selector_a, :specificity => SimpleStyleSheet::SelectorSpecificity.new(0,1,0,0)) }
-      let(:selector_b) { stub(:selector_b, :specificity => SimpleStyleSheet::SelectorSpecificity.new(0,0,0,2)) }
-      let(:selector_c) { stub(:selector_c, :specificity => SimpleStyleSheet::SelectorSpecificity.new(0,0,1,0)) }
-      let(:selector_d) { stub(:selector_d, :specificity => SimpleStyleSheet::SelectorSpecificity.new(0,0,0,1)) }
-      let(:selector_e) { stub(:selector_e, :specificity => SimpleStyleSheet::SelectorSpecificity.new(0,2,0,0)) }
+      let(:selector_a) { stub(:selector_a, :specificity => SimpleSelector::Specificity.new(0,1,0,0)) }
+      let(:selector_b) { stub(:selector_b, :specificity => SimpleSelector::Specificity.new(0,0,0,2)) }
+      let(:selector_c) { stub(:selector_c, :specificity => SimpleSelector::Specificity.new(0,0,1,0)) }
+      let(:selector_d) { stub(:selector_d, :specificity => SimpleSelector::Specificity.new(0,0,0,1)) }
+      let(:selector_e) { stub(:selector_e, :specificity => SimpleSelector::Specificity.new(0,2,0,0)) }
 
       context "when there are many matching selectors" do
         before do

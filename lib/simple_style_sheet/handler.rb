@@ -42,7 +42,7 @@ module SimpleStyleSheet
     end
 
     def new_selector
-      Selector.new
+      SimpleSelector.new
     end
 
     def final_property_name(property_name)
