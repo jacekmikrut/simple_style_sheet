@@ -1,1 +1,1 @@
-rvm use 1.9.2-p290@simple_style_sheet --create
+rvm use 1.9.3-p194@simple_style_sheet --create
