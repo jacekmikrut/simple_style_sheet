@@ -1,7 +1,7 @@
-SimpleStyleSheet
-================
+simple_style_sheet
+==================
 
-SimpleStyleSheet is a Ruby gem that **parses a CSS-like Hash style sheet** and then **allows searching for property values of given HTML-like tags**. Tag and property names, as well as their meaning, are up to the gem user.
+simple_style_sheet is a Ruby gem that **parses a CSS-like Hash style sheet** and then **allows searching for property values of given HTML-like tags**. Tag and property names, as well as their meaning, are up to the gem user.
 
 Usage and details
 -----------------
@@ -86,7 +86,7 @@ The #value_for method, when called without the tag argument, returns top-level p
 Selector specificity
 --------------------
 
-Selector specificity information can be found in the description of [SimpleSelector](http://github.com/jacekmikrut/simple_selector) Ruby gem.
+Selector specificity information can be found in the description of [simple_selector](http://github.com/jacekmikrut/simple_selector) Ruby gem.
 
 Property name translator
 ------------------------
@@ -109,7 +109,7 @@ In order to use the translator, it should be passed as the second argument to Si
 Installation
 ------------
 
-As a Ruby gem, SimpleStyleSheet can be installed either by running
+As a Ruby gem, simple_style_sheet can be installed either by running
 
 ```bash
   gem install simple_style_sheet
