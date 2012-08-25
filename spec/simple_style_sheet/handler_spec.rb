@@ -11,6 +11,17 @@ describe SimpleStyleSheet::Handler do
     MAPS << {}
 
     STYLE_SHEETS << {
+      :"tag .class" => {
+        "property" => :value
+      }
+    }
+    MAPS << {
+      "property" => [
+        { :value => :value, :selector => SimpleSelector.new("tag .class") }
+      ]
+    }
+
+    STYLE_SHEETS << {
       "property_a" => :value_a1,
 
       "tag_a .class" => {

@@ -31,7 +31,7 @@ module SimpleStyleSheet
 
         case value
         when Hash
-          populate(value, selector + key)
+          populate(value, selector + key.to_s)
         else
           property_name = final_property_name(key)
 
