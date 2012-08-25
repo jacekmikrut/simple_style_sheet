@@ -1,3 +1,6 @@
+0.1.0 (August 25, 2012)
+  Selectors can now be written as symbols.
+
 0.0.2 (February 26, 2012)
   Delegated selector-related functionality to SimpleSelector gem.
 
